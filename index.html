@@ -1,0 +1,2784 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Darul Qur'an Rahman - Asrama Yatim & Dhuafa</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/logo/logo-DQR.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/logo/logo-DQR.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/logo/logo-DQR.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/logo/logo-DQR.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="assets/logo/logo-DQR.png">
+    <meta name="msapplication-TileImage" content="assets/logo/logo-DQR.png">
+    <meta name="msapplication-TileColor" content="#0f5132">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Montserrat:wght@400;700&family=Scheherazade+New:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0f5132;
+            --primary-light: #198754;
+            --primary-dark: #0a3622;
+            --primary-gradient: linear-gradient(135deg, #0f5132 0%, #198754 100%);
+            --accent: #ffc107;
+            --accent-light: #fff3cd;
+            --accent-dark: #e0a800;
+            --accent-gradient: linear-gradient(135deg, #ffc107 0%, #e0a800 100%);
+            --text-dark: #212529;
+            --text-light: #6c757d;
+            --text-muted: #adb5bd;
+            --bg-cream: #fefefe;
+            --bg-light: #f8f9fa;
+            --bg-gradient: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            --white: #ffffff;
+            --shadow: rgba(0, 0, 0, 0.08);
+            --shadow-lg: rgba(0, 0, 0, 0.15);
+            --shadow-xl: rgba(0, 0, 0, 0.25);
+            --border: #dee2e6;
+            --border-light: #f1f3f4;
+            --success: #198754;
+            --info: #0dcaf0;
+            --warning: #ffc107;
+            --danger: #dc3545;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background: var(--white);
+        }
+
+        .arabic-text {
+            font-family: 'Scheherazade New', serif;
+            font-size: 1.3em;
+            line-height: 2;
+            direction: rtl;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 2px 20px var(--shadow);
+            z-index: 1000;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        nav.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 8px 32px var(--shadow-xl);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo img {
+            height: 40px;
+            width: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .logo img:hover {
+            transform: rotate(5deg);
+        }
+
+        .logo i {
+            font-size: 2rem;
+            color: var(--accent);
+            animation: pulse 3s infinite;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+        }
+
+        .nav-menu a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--primary-gradient);
+            border-radius: 25px;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+            z-index: -1;
+        }
+
+        .nav-menu a:hover::before {
+            transform: scaleX(1);
+        }
+
+        .nav-menu a:hover {
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .mobile-toggle {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--primary);
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .mobile-toggle:hover {
+            background: var(--primary);
+            color: var(--white);
+            transform: scale(1.1);
+        }
+
+        /* Hero Section - UPGRADED */
+        .hero {
+            margin-top: 80px;
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg,
+                rgba(15, 81, 50, 0.1) 0%,
+                rgba(25, 135, 84, 0.2) 50%,
+                rgba(255, 193, 7, 0.1) 100%);
+            z-index: 1;
+            animation: gradientShift 8s ease-in-out infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+
+        .hero-slideshow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .hero-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+            transform: scale(1);
+        }
+
+        .hero-slide.active {
+            opacity: 1;
+            animation: smoothZoom 10s ease-out forwards;
+        }
+
+        @keyframes smoothZoom {
+            0% {
+                transform: scale(1);
+            }
+
+            100% {
+                transform: scale(1.08);
+            }
+        }
+
+        .hero-slide:nth-child(1) {
+            background-image: url('assets/galery/bukabersama.png');
+        }
+
+        .hero-slide:nth-child(2) {
+            background-image: url('assets/galery/lelang.png');
+        }
+
+        .hero-slide:nth-child(3) {
+            background-image: url('assets/galery/MembacaQur\'an.png');
+        }
+
+        .hero-slide:nth-child(4) {
+            background-image: url('assets/galery/MembacaQur\'an2.png');
+        }
+
+        .hero-slide:nth-child(5) {
+            background-image: url('assets/galery/pedulibencana.png');
+        }
+
+        .hero-slide:nth-child(6) {
+            background-image: url('assets/galery/tasmi\'05Juz.png');
+        }
+
+        .hero-slide:nth-child(7) {
+            background-image: url('assets/galery/tasmi\'juz10.png');
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(26, 95, 62, 0.65) 0%, rgba(45, 133, 89, 0.65) 100%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Hero Navigation Dots */
+        .hero-nav {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            z-index: 10;
+        }
+
+        .hero-nav-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            cursor: pointer;
+            transition: all 0.4s ease;
+            border: 2px solid transparent;
+        }
+
+        .hero-nav-dot.active {
+            background: var(--accent);
+            width: 40px;
+            border-radius: 6px;
+            border-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 2px 10px rgba(212, 175, 55, 0.5);
+        }
+
+        .hero-nav-dot:hover {
+            background: rgba(255, 255, 255, 0.8);
+            transform: scale(1.2);
+        }
+
+        /* Hero Control Arrows */
+        .hero-control {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .hero-control:hover {
+            background: rgba(212, 175, 55, 0.8);
+            border-color: var(--accent);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .hero-control.prev {
+            left: 30px;
+        }
+
+        .hero-control.next {
+            right: 30px;
+        }
+
+        .hero-content {
+            position: relative;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease-out;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            animation: fadeInUp 1s ease-out 0.2s backwards;
+        }
+
+        .hero .location {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.4s backwards;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            animation: fadeInUp 1s ease-out 0.6s backwards;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+            transform: translateY(0);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: var(--accent-gradient);
+            color: var(--text-dark);
+            box-shadow: 0 10px 30px rgba(255, 193, 7, 0.3);
+            border: 2px solid transparent;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 20px 50px rgba(255, 193, 7, 0.4);
+            border-color: var(--accent-dark);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background: var(--white);
+            color: var(--primary);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 20px 50px rgba(255, 255, 255, 0.3);
+            border-color: var(--white);
+        }
+
+        .btn:active {
+            transform: translateY(-2px) scale(0.98);
+            transition: all 0.1s;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Hadith Section */
+        .hadith-section {
+            background: var(--bg-cream);
+            padding: 5rem 2rem;
+            position: relative;
+        }
+
+        .hadith-section::before {
+            content: '☪';
+            position: absolute;
+            top: 20px;
+            right: 50px;
+            font-size: 15rem;
+            color: rgba(26, 95, 62, 0.03);
+            z-index: 0;
+        }
+
+        .hadith-container {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hadith-container .arabic-quote {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px var(--shadow);
+            margin-bottom: 2rem;
+            border-left: 5px solid var(--accent);
+        }
+
+        .hadith-container h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .hadith-container .source {
+            font-style: italic;
+            color: var(--text-light);
+            margin-top: 1rem;
+        }
+
+        .hadith-container .translation {
+            background: var(--primary);
+            color: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 6rem 2rem;
+            background: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(15, 81, 50, 0.02) 0%, rgba(255, 193, 7, 0.02) 100%);
+            z-index: 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-title h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--accent-gradient);
+            border-radius: 2px;
+            animation: lineGrow 1s ease-out;
+        }
+
+        @keyframes lineGrow {
+            from { width: 0; }
+            to { width: 100px; }
+        }
+
+        .section-title p {
+            color: var(--text-light);
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 1.5rem auto 0;
+        }
+
+        .about-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .about-text h3 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 2rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .about-text p {
+            margin-bottom: 2rem;
+            color: var(--text-light);
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px var(--shadow);
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(15, 81, 50, 0.1);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px var(--shadow-lg);
+            border-color: var(--primary);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .about-image {
+            position: relative;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 30px 80px var(--shadow-xl);
+            transition: all 0.5s ease;
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            background: var(--primary-gradient);
+            border-radius: 35px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .about-image:hover::before {
+            opacity: 0.3;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            max-height: 500px;
+            object-fit: contain;
+            transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05) rotate(1deg);
+        }
+
+        /* Vision Mission */
+        .vision-mission {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            color: var(--white);
+            padding: 6rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .vision-mission::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.03)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.03)"/><circle cx="50" cy="10" r="0.5" fill="rgba(255,255,255,0.02)"/><circle cx="10" cy="50" r="0.5" fill="rgba(255,255,255,0.02)"/><circle cx="90" cy="30" r="0.5" fill="rgba(255,255,255,0.02)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            z-index: 0;
+        }
+
+        .vm-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .vm-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 3rem;
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .vm-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.6s;
+        }
+
+        .vm-card:hover::before {
+            left: 100%;
+        }
+
+        .vm-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            border-color: rgba(255, 193, 7, 0.3);
+        }
+
+        .vm-card h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.8rem;
+            margin-bottom: 2rem;
+            color: var(--accent);
+            position: relative;
+            display: inline-block;
+        }
+
+        .vm-card h3::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--accent);
+            border-radius: 2px;
+            animation: lineGrow 1s ease-out 0.5s backwards;
+        }
+
+        .vm-card p {
+            line-height: 1.9;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .vm-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .vm-card li {
+            margin-bottom: 1.8rem;
+            padding-left: 3rem;
+            position: relative;
+            line-height: 1.8;
+            font-size: 1.05rem;
+            transition: transform 0.3s ease;
+        }
+
+        .vm-card li:hover {
+            transform: translateX(10px);
+        }
+
+        .vm-card li::before {
+            content: '✦';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-size: 1.5rem;
+            animation: sparkle 2s infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.2); }
+        }
+
+        /* Programs Section */
+        .programs-section {
+            padding: 6rem 2rem;
+            background: var(--bg-cream);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .programs-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(248, 249, 250, 0.8) 0%, rgba(233, 236, 239, 0.8) 100%);
+            z-index: 0;
+        }
+
+        .programs-grid {
+            max-width: 1400px;
+            margin: 3rem auto 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .program-card {
+            background: var(--white);
+            padding: 3rem 2rem;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px var(--shadow);
+            text-align: center;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(15, 81, 50, 0.1);
+        }
+
+        .program-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: var(--primary-gradient);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+            z-index: 1;
+        }
+
+        .program-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(15, 81, 50, 0.05) 0%, rgba(255, 193, 7, 0.05) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 0;
+        }
+
+        .program-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 30px 70px var(--shadow-xl);
+            border-color: var(--primary);
+        }
+
+        .program-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .program-card:hover::after {
+            opacity: 1;
+        }
+
+        .program-card i {
+            font-size: 4.5rem;
+            color: var(--accent);
+            margin-bottom: 2rem;
+            transition: all 0.4s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        .program-card:hover i {
+            transform: scale(1.1) rotate(5deg);
+            color: var(--primary);
+        }
+
+        .program-card h3 {
+            font-size: 1.9rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            position: relative;
+            z-index: 2;
+        }
+
+        .program-card p {
+            color: var(--text-light);
+            line-height: 1.8;
+            font-size: 1.05rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .program-card .learn-more {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary-gradient);
+            color: var(--white);
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            opacity: 0;
+            transform: translateX(-50%) translateY(20px);
+            transition: all 0.4s ease;
+            z-index: 3;
+        }
+
+        .program-card:hover .learn-more {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* Gallery Section */
+        .gallery-section {
+            padding: 6rem 2rem;
+            background: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(15, 81, 50, 0.02) 0%, rgba(255, 193, 7, 0.02) 100%);
+            z-index: 0;
+        }
+
+        .gallery-grid {
+            max-width: 1400px;
+            margin: 3rem auto 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            height: 320px;
+            box-shadow: 0 15px 35px var(--shadow);
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(15, 81, 50, 0.1);
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 60px var(--shadow-lg);
+            border-color: var(--primary);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(26, 95, 62, 0.8) 0%, rgba(45, 133, 89, 0.6) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 2rem;
+            z-index: 2;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-overlay h4 {
+            color: var(--white);
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .gallery-overlay .view-more {
+            background: var(--accent-gradient);
+            color: var(--text-dark);
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            align-self: flex-start;
+            border: 2px solid transparent;
+        }
+
+        .gallery-overlay .view-more:hover {
+            background: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255, 193, 7, 0.4);
+            border-color: var(--accent-dark);
+        }
+
+        /* Lightbox */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            animation: zoomIn 0.3s ease-out;
+        }
+
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .lightbox img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .lightbox-close:hover {
+            background: var(--accent);
+            transform: scale(1.1);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .lightbox-nav:hover {
+            background: var(--accent);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .lightbox-prev {
+            left: 20px;
+        }
+
+        .lightbox-next {
+            right: 20px;
+        }
+
+        .lightbox-caption {
+            position: absolute;
+            bottom: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Donation Section */
+        .donation-section {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, var(--accent-light) 0%, var(--accent) 100%);
+        }
+
+        .donation-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .donation-container h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3rem;
+            color: var(--primary-dark);
+            margin-bottom: 2rem;
+        }
+
+        .donation-container p {
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            margin-bottom: 3rem;
+            line-height: 1.8;
+        }
+
+        .bank-accounts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .bank-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s;
+        }
+
+        .bank-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .bank-card h4 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .bank-card .account-number {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin: 1rem 0;
+            letter-spacing: 1px;
+        }
+
+        .bank-card .account-name {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .qris-section {
+            margin-top: 3rem;
+            padding: 2rem;
+            background: var(--white);
+            border-radius: 15px;
+            display: inline-block;
+        }
+
+        .qris-section h4 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 6rem 2rem;
+            background: var(--bg-cream);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(15, 81, 50, 0.02) 0%, rgba(255, 193, 7, 0.02) 100%);
+            z-index: 0;
+        }
+
+        .contact-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-info {
+            background: var(--primary);
+            color: var(--white);
+            padding: 3rem;
+            border-radius: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-info::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: var(--accent-gradient);
+        }
+
+        .contact-info h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.8rem;
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+
+        .contact-info h3::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: start;
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateX(10px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .contact-item i {
+            font-size: 1.8rem;
+            color: var(--accent);
+            margin-top: 5px;
+            min-width: 30px;
+        }
+
+        .contact-item div strong {
+            display: block;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+        }
+
+        .contact-item div p {
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            color: var(--white);
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .social-links a:hover {
+            background: var(--accent);
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 10px 25px rgba(255, 193, 7, 0.4);
+        }
+
+        .contact-form {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 25px;
+            box-shadow: 0 20px 60px var(--shadow-lg);
+            border: 1px solid rgba(15, 81, 50, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-form::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: var(--primary-gradient);
+        }
+
+        .contact-form h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 2.5rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .contact-form h3::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--accent-gradient);
+            border-radius: 2px;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1.2rem 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: #fafbfc;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: var(--white);
+            box-shadow: 0 0 0 3px rgba(15, 81, 50, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 160px;
+            line-height: 1.6;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--text-light);
+            opacity: 0.7;
+        }
+
+        .contact-form button[type="submit"] {
+            width: 100%;
+            padding: 1.2rem;
+            background: var(--primary-gradient);
+            color: var(--white);
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-form button[type="submit"]::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .contact-form button[type="submit"]:hover::before {
+            left: 100%;
+        }
+
+        .contact-form button[type="submit"]:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(15, 81, 50, 0.3);
+        }
+
+        .contact-form button[type="submit"]:active {
+            transform: translateY(-1px);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-dark);
+            color: var(--white);
+            padding: 3rem 2rem 1rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+            padding: 0 1rem;
+        }
+
+        .footer-section h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            line-height: 1.8;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--accent);
+            color: var(--primary-dark);
+            transform: translateY(-5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Map Section */
+        .map-section {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px var(--shadow);
+            margin-top: 1rem;
+        }
+
+        .map-section h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .map-container {
+            width: 100%;
+            height: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* WhatsApp Float Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.5);
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 999;
+            animation: pulse 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.7);
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                box-shadow: 0 5px 20px rgba(37, 211, 102, 0.5);
+            }
+
+            50% {
+                box-shadow: 0 5px 30px rgba(37, 211, 102, 0.8);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 80px;
+                flex-direction: column;
+                background: var(--white);
+                width: 100%;
+                padding: 2rem;
+                box-shadow: 0 10px 30px var(--shadow-lg);
+                transition: left 0.3s;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .mobile-toggle {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .hero-control {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+
+            .hero-control.prev {
+                left: 15px;
+            }
+
+            .hero-control.next {
+                right: 15px;
+            }
+
+            .hero-nav {
+                bottom: 20px;
+            }
+
+            .about-content,
+            .vm-container,
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Loading Screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+        }
+
+        .loading-screen.hide {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loading-logo {
+            width: 120px;
+            height: 120px;
+            margin-bottom: 2rem;
+            animation: logoPulse 2s infinite;
+        }
+
+        @keyframes logoPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .loading-text {
+            color: var(--white);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            animation: textFade 1.5s infinite;
+        }
+
+        @keyframes textFade {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .loading-bar {
+            width: 300px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .loading-progress {
+            height: 100%;
+            background: var(--accent);
+            border-radius: 2px;
+            animation: progress 2s ease-out;
+        }
+
+        @keyframes progress {
+            from { width: 0%; }
+            to { width: 100%; }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide-up {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .slide-up.slide-up {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .slide-left.slide-left {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .slide-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .slide-right.slide-right {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            z-index: 999;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            background: var(--primary-light);
+            transform: translateY(-5px);
+        }
+
+        /* Typing Indicator */
+        .typing-indicator {
+            display: flex;
+            align-self: flex-start;
+            background: #eeeeee;
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 14px;
+        }
+
+        .typing-indicator span {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #333;
+            margin: 0 2px;
+            animation: typing 1.4s infinite ease-in-out;
+        }
+
+        .typing-indicator span:nth-child(1) { animation-delay: -0.32s; }
+        .typing-indicator span:nth-child(2) { animation-delay: -0.16s; }
+
+        @keyframes typing {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1); }
+        }
+
+        /* Chat Toggle Button */
+        .chat-toggle-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: #1a5d1a;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(26, 93, 26, 0.5);
+            transition: all 0.3s;
+            z-index: 999;
+        }
+
+        .chat-toggle-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 30px rgba(26, 93, 26, 0.7);
+        }
+
+        .chat-toggle-btn.hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="assets/logo/logo-DQR.png" alt="Darul Qur'an Rahman">
+                <span>Darul Qur'an Rahman</span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home">Beranda</a></li>
+                <li><a href="#about">Tentang</a></li>
+                <li><a href="#programs">Program</a></li>
+                <li><a href="#gallery">Galeri</a></li>
+                <li><a href="#donation">Donasi</a></li>
+                <li><a href="#contact">Kontak</a></li>
+            </ul>
+            <div class="mobile-toggle" id="mobileToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Smooth Slideshow -->
+    <section class="hero" id="home">
+        <div class="hero-slideshow" id="heroSlideshow">
+            <div class="hero-slide active"></div>
+            <div class="hero-slide"></div>
+            <div class="hero-slide"></div>
+            <div class="hero-slide"></div>
+            <div class="hero-slide"></div>
+            <div class="hero-slide"></div>
+            <div class="hero-slide"></div>
+        </div>
+
+        <!-- Hero Controls -->
+        <div class="hero-control prev" id="heroPrev">
+            <i class="fas fa-chevron-left"></i>
+        </div>
+        <div class="hero-control next" id="heroNext">
+            <i class="fas fa-chevron-right"></i>
+        </div>
+
+        <!-- Hero Navigation Dots -->
+        <div class="hero-nav" id="heroNav"></div>
+
+        <div class="hero-content">
+            <h1>Darul Qur'an Rahman</h1>
+            <p class="subtitle">Asrama Yatim & Dhuafa</p>
+            <p class="location"><i class="fas fa-map-marker-alt"></i> Jl. Pondok Jaya IX No.26B, Pela Mampang, Jakarta
+                Selatan</p>
+            <div class="cta-buttons">
+                <a href="#donation" class="btn btn-primary">Donasi Sekarang</a>
+                <a href="#about" class="btn btn-secondary">Pelajari Lebih Lanjut</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hadith Section -->
+    <section class="hadith-section">
+        <div class="hadith-container fade-in">
+            <div class="arabic-quote">
+                <h3>Keutamaan Menyantuni Anak Yatim</h3>
+                <p class="arabic-text">
+                    عَنْ سَهْلِ بْنِ سَعْدٍ رضي الله عنه قَالَ : قَالَ رَسُولُ اللَّهِ صلى الله عليه وسلم : أَنَا
+                    وَكَافِلُ الْيَتِيمِ فِى الْجَنَّةِ هكَذَا، وَأَشَارَ بِالسَّبَّابَةِ وَالْوُسطَى وَفَرَّجَ
+                    بَيْنَهُمَا شَيْئاً
+                </p>
+                <p class="source">[HR al-Bukhari no. 4998 dan 5659]</p>
+            </div>
+            <div class="translation">
+                <p>"Aku dan orang yang menanggung anak yatim (kedudukannya) di surga seperti ini" - kemudian Rasulullah
+                    ﷺ mengisyaratkan jari telunjuk dan jari tengah beliau, serta agak merenggangkan keduanya.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="section-title fade-in">
+            <h2>Tentang Kami</h2>
+            <p>Membangun Generasi Qur'ani yang Cerdas, Mandiri, dan Berakhlak Mulia</p>
+        </div>
+        <div class="about-content">
+            <div class="about-text fade-in">
+                <h3>Yayasan Darul Qur'an Rahman</h3>
+                <p>Yayasan Darul Qur'an Rahman adalah sebuah lembaga yang didedikasikan untuk memberikan peluang terbaik
+                    bagi anak-anak yatim dan dhuafa dalam menghafal Al-Qur'an sekaligus memperoleh pendidikan yang
+                    berkualitas.</p>
+                <p>Lembaga ini tidak hanya berfokus pada pengajaran agama, tetapi juga membekali anak-anak dengan
+                    keterampilan penting di era modern, seperti kewirausahaan (entrepreneurship) dan keterampilan
+                    digital.</p>
+                <p>Dengan biaya pendidikan yang sepenuhnya ditanggung oleh lembaga mulai dari tingkat SD, SMP, SMA,
+                    hingga perguruan tinggi, Darul Qur'an Rahman berkomitmen menciptakan generasi penerus yang tidak
+                    hanya unggul dalam penguasaan Al-Qur'an, tetapi juga siap berkompetisi di dunia yang semakin
+                    berkembang.</p>
+
+                <div class="about-stats">
+                    <div class="stat-card fade-in">
+                        <span class="stat-number">50+</span>
+                        <span class="stat-label">Anak Asuh</span>
+                    </div>
+                    <div class="stat-card fade-in">
+                        <span class="stat-number">10+</span>
+                        <span class="stat-label">Tahun Pengabdian</span>
+                    </div>
+                    <div class="stat-card fade-in">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Pendidikan Gratis</span>
+                    </div>
+                    <div class="stat-card fade-in">
+                        <span class="stat-number">30</span>
+                        <span class="stat-label">Juz Hafalan</span>
+                    </div>
+                </div>
+            </div>
+            <div class="about-image fade-in">
+                <img src="assets/logo/logo-DQR.png" alt="Darul Qur'an Rahman">
+            </div>
+        </div>
+    </section>
+
+    <!-- Vision Mission Section -->
+    <section class="vision-mission">
+        <div class="section-title fade-in">
+            <h2 style="color: var(--accent);">Visi & Misi</h2>
+        </div>
+        <div class="vm-container">
+            <div class="vm-card fade-in">
+                <h3>Visi</h3>
+                <p>Menjadi lembaga pendidikan yang terdepan dalam mencetak generasi penghafal Al-Qur'an yang cerdas,
+                    mandiri, dan berakhlak mulia, yang mampu menguasai ilmu pengetahuan, kewirausahaan, dan teknologi
+                    digital untuk memberikan kontribusi positif bagi masyarakat dan umat.</p>
+            </div>
+            <div class="vm-card fade-in">
+                <h3>Misi</h3>
+                <ul>
+                    <li>Menjadi Pusat Pendidikan Tahfidz Qur'an Terpercaya</li>
+                    <li>Memberikan Akses Pendidikan Berkualitas dari SD hingga Perguruan Tinggi</li>
+                    <li>Membangun Kemandirian Melalui Kewirausahaan</li>
+                    <li>Meningkatkan Keterampilan Digital</li>
+                    <li>Menanamkan Nilai-Nilai Islam dalam Karakter</li>
+                    <li>Menyediakan Fasilitas dan Tenaga Pengajar Berkualitas</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section class="programs-section" id="programs">
+        <div class="section-title fade-in">
+            <h2>Program Kami</h2>
+            <p>Berbagai program untuk mendukung kesejahteraan dan pendidikan anak yatim</p>
+        </div>
+        <div class="programs-grid">
+            <div class="program-card fade-in">
+                <i class="fas fa-hand-holding-heart"></i>
+                <h3>Orang Tua Asuh</h3>
+                <p>Program pengasuhan anak yatim dengan pembinaan penuh kasih sayang dan perhatian</p>
+            </div>
+            <div class="program-card fade-in">
+                <i class="fas fa-book-quran"></i>
+                <h3>Tahfidz Al-Qur'an</h3>
+                <p>Program menghafal Al-Qur'an 30 Juz dengan metode pembelajaran yang efektif</p>
+            </div>
+            <div class="program-card fade-in">
+                <i class="fas fa-graduation-cap"></i>
+                <h3>Pendidikan Formal</h3>
+                <p>Pendidikan gratis dari SD, SMP, SMA hingga Perguruan Tinggi</p>
+            </div>
+            <div class="program-card fade-in">
+                <i class="fas fa-donate"></i>
+                <h3>Zakat</h3>
+                <p>Penyaluran zakat untuk kesejahteraan anak yatim dan dhuafa</p>
+            </div>
+            <div class="program-card fade-in">
+                <i class="fas fa-hands-helping"></i>
+                <h3>Infaq & Sedekah</h3>
+                <p>Program sedekah untuk operasional asrama dan kebutuhan anak-anak</p>
+            </div>
+            <div class="program-card fade-in">
+                <i class="fas fa-mosque"></i>
+                <h3>Wakaf</h3>
+                <p>Program wakaf untuk pengembangan sarana dan prasarana pendidikan</p>
+            </div>
+            <div class="program-card fade-in">
+                <i class="fas fa-utensils"></i>
+                <h3>Fidyah</h3>
+                <p>Penerimaan fidyah untuk kebutuhan makan dan gizi anak-anak asrama</p>
+            </div>
+            <div class="program-card fade-in">
+                <i class="fas fa-sun"></i>
+                <h3>Sedekah Shubuh</h3>
+                <p>Program sedekah rutin di waktu shubuh untuk keberkahan rezeki</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery-section" id="gallery">
+        <div class="section-title fade-in">
+            <h2>Galeri Kegiatan</h2>
+            <p>Dokumentasi kegiatan sehari-hari di Asrama Darul Qur'an Rahman</p>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item fade-in">
+                <img src="assets/galery/tasmi'05Juz.png" alt="Kegiatan Tahfidz">
+                <div class="gallery-overlay">
+                    <h4>Kegiatan Tahfidz</h4>
+                </div>
+            </div>
+            <div class="gallery-item fade-in">
+                <img src="assets/galery/tasmi'juz10.png" alt="Kegiatan Tahfidz">
+                <div class="gallery-overlay">
+                    <h4>Kegiatan Tahfidz</h4>
+                </div>
+            </div>
+            <div class="gallery-item fade-in">
+                <img src="assets/galery/MembacaQur'an.png" alt="Kegiatan Pembelajaran">
+                <div class="gallery-overlay">
+                    <h4>Kegiatan Pembelajaran</h4>
+                </div>
+            </div>
+            <div class="gallery-item fade-in">
+                <img src="assets/galery/MembacaQur'an2.png" alt="Kegiatan Pembelajaran">
+                <div class="gallery-overlay">
+                    <h4>Kegiatan Pembelajaran</h4>
+                </div>
+            </div>
+            <div class="gallery-item fade-in">
+                <img src="assets/galery/lelang.png" alt="Kegiatan Lelang">
+                <div class="gallery-overlay">
+                    <h4>Kegiatan Lelang</h4>
+                </div>
+            </div>
+            <div class="gallery-item fade-in">
+                <img src="assets/galery/pedulibencana.png" alt="Peduli Bencana">
+                <div class="gallery-overlay">
+                    <h4>Peduli Bencana</h4>
+                </div>
+            </div>
+            <div class="gallery-item fade-in">
+                <img src="assets/galery/bukabersama.png" alt="Buka Puasa">
+                <div class="gallery-overlay">
+                    <h4>Buka Puasa Bersama</h4>
+                </div>
+            </div>
+            <div class="gallery-item fade-in">
+                <img src="assets/galery/donasi.png" alt="Donasi">
+                <div class="gallery-overlay">
+                    <h4>Kegiatan Donasi</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Donation Section -->
+    <section class="donation-section" id="donation">
+        <div class="donation-container">
+            <h2 class="fade-in">Salurkan Donasi Anda</h2>
+            <p class="fade-in">Bantu wujudkan cita-cita anak-anak yatim dhuafa penghafal Qur'an. Setiap donasi Anda akan
+                menjadi amal jariyah yang pahalanya mengalir hingga hari kiamat.</p>
+
+            <div class="bank-accounts">
+                <div class="bank-card fade-in">
+                    <h4><img src="assets/logo/logo-BSI.png" alt="Bank Syariah Indonesia"
+                            style="width: 40px; height: 40px; margin-right: 10px;"> Bank Syariah Indonesia</h4>
+                    <div class="account-number">78 2228 2282</div>
+                    <p class="account-name">a.n. Yayasan Darul Qur'an Rahman</p>
+                </div>
+                <div class="bank-card fade-in">
+                    <h4><img src="assets/logo/logo-BCA.png" alt="Bank BCA"
+                            style="width: 40px; height: 40px; margin-right: 10px;"> Bank BCA</h4>
+                    <div class="account-number">5520900057</div>
+                    <p class="account-name">a.n. Yayasan Darul Qur'an Rahman</p>
+                </div>
+                <div class="bank-card fade-in">
+                    <h4><img src="assets/logo/logo-MANDIRI.png" alt="Bank Mandiri"
+                            style="width: 40px; height: 40px; margin-right: 10px;"> Bank Mandiri</h4>
+                    <div class="account-number">102 0010757 414</div>
+                    <p class="account-name">a.n. Yayasan Darul Qur'an Rahman</p>
+                </div>
+                <div class="bank-card fade-in">
+                    <h4><img src="assets/logo/logo-BRI.png" alt="Bank BRI"
+                            style="width: 40px; height: 40px; margin-right: 10px;"> Bank BRI</h4>
+                    <div class="account-number">034101002521309</div>
+                    <p class="account-name">a.n. Yayasan Darul Qur'an Rahman</p>
+                </div>
+            </div>
+
+            <div class="qris-section fade-in">
+                <h4>Atau Scan QRIS</h4>
+                <div style="background: white; padding: 2rem; border-radius: 10px; display: inline-block;">
+                    <img src="assets/logo/QR.png" alt="QRIS Code" style="width: 250px; height: 250px;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="section-title fade-in">
+            <h2>Hubungi Kami</h2>
+            <p>Kami siap menjawab pertanyaan dan melayani kebutuhan Anda</p>
+        </div>
+        <div class="contact-container">
+            <div class="contact-info fade-in">
+                <h3>Informasi Kontak</h3>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <strong>Alamat</strong>
+                        <p>Jl. Pondok Jaya IX No.26B<br>Pela Mampang, Jakarta Selatan 12720</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <div>
+                        <strong>Telepon</strong>
+                        <p>(021) 7177 1065</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-mobile-alt"></i>
+                    <div>
+                        <strong>WhatsApp</strong>
+                        <p>0812 1111 7166</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <strong>Email</strong>
+                        <p>darulquranrahman@gmail.com</p>
+                    </div>
+                </div>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=darulquranrahman.org/"><i
+                            class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/pondokyatimjaksel/"><i class="fab fa-instagram"></i></a>
+                    <a href="https://x.com/intent/tweet?url=darulquranrahman.org/"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.youtube.com/@AsramaYatimDarulQuranRahman"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="contact-form fade-in">
+                <h3>Kirim Pesan</h3>
+                <form>
+                    <div class="form-group">
+                        <label>Nama Lengkap</label>
+                        <input type="text" placeholder="Masukkan nama Anda" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" placeholder="Masukkan email Anda" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Subjek</label>
+                        <input type="text" placeholder="Subjek pesan" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Pesan</label>
+                        <textarea placeholder="Tulis pesan Anda di sini..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Kirim Pesan</button>
+                </form>
+            </div>
+        </div>
+        <div id="gemini-chat-container"
+            style="position: fixed; bottom: 20px; right: 20px; width: 350px; font-family: sans-serif; z-index: 10000; box-shadow: 0 5px 25px rgba(0,0,0,0.2); border-radius: 10px; overflow: hidden; display: none; flex-direction: column; background: white;">
+            <div
+                style="background: #1a5d1a; color: white; padding: 15px; font-weight: bold; display: flex; justify-content: space-between; align-items: center;">
+                <span>Tanya Darul Qur'an (AI)</span>
+                <button onclick="toggleChat()"
+                    style="background:none; border:none; color:white; cursor:pointer; font-size:20px;">×</button>
+            </div>
+            <div id="chat-window"
+                style="height: 300px; overflow-y: auto; padding: 15px; display: flex; flex-direction: column; gap: 10px; background: #f9f9f9;">
+                <div
+                    style="background: #e1f5fe; padding: 10px; border-radius: 10px; align-self: flex-start; font-size: 14px;">
+                    Assalamu'alaikum! Ada yang bisa saya bantu seputar yayasan?</div>
+            </div>
+            <div style="padding: 10px; border-top: 1px solid #eee; display: flex;">
+                <input type="text" id="user-input" placeholder="Ketik pesan..."
+                    style="flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 5px; outline: none;">
+                <button onclick="kirimPesan()"
+                    style="margin-left: 5px; background: #1a5d1a; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer;">Kirim</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Darul Qur'an Rahman</h3>
+                <p>"Orang yang memelihara anak yatim di kalangan umat muslimin, memberikannya makan dan minum, pasti
+                    akan Allah masukkan ke dalam surga, kecuali ia melakukan dosa yang tidak bisa diampuni."</p>
+            </div>
+            <div class="footer-section">
+                <h3>Link Cepat</h3>
+                <p><a href="#about">Tentang Kami</a></p>
+                <p><a href="#programs">Program</a></p>
+                <p><a href="#gallery">Galeri</a></p>
+                <p><a href="#donation">Donasi</a></p>
+                <p><a href="#contact">Kontak</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>Layanan Kami</h3>
+                <p>Acara Keagamaan</p>
+                <p>Tasyakuran</p>
+                <p>Santunan</p>
+                <p>Marawis/Hadroh</p>
+                <p>Buka Puasa Bersama</p>
+            </div>
+            <div class="footer-section">
+                <h3>Jam Operasional</h3>
+                <p>Senin - Jumat: 08:00 - 17:00</p>
+                <p>Sabtu: 08:00 - 14:00</p>
+                <p>Minggu: Libur</p>
+                <p style="margin-top: 1rem;"><strong>Kunjungan:</strong> Dengan perjanjian</p>
+            </div>
+            <div class="footer-section">
+                <h3>Lokasi Kami</h3>
+                <div class="map-section">
+                    <h3>Peta Lokasi</h3>
+                    <div class="map-container">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1218.748934760381!2d106.82267747819425!3d-6.250786301262314!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f1c59e82b371%3A0x657573b7d6c2782d!2sAsrama%20Yatim%20Dhuafa%20Darul%20Qur&#39;an%20Rahman!5e1!3m2!1sid!2sid!4v1769494415947!5m2!1sid!2sid"
+                            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Darul Qur'an Rahman. Semua hak cipta dilindungi.</p>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/6281211117166" target="_blank" class="whatsapp-float">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top" id="scrollTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-progress" id="scrollProgress">
+        <div class="scroll-progress-bar"></div>
+    </div>
+
+    <!-- Floating Particles Background -->
+    <div class="floating-particles" id="floatingParticles"></div>
+
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-logo">
+            <img src="assets/logo/logo-DQR.png" alt="Darul Qur'an Rahman" style="width: 100%; height: 100%; object-fit: contain;">
+        </div>
+        <div class="loading-text">Memuat...</div>
+        <div class="loading-bar">
+            <div class="loading-progress"></div>
+        </div>
+        <div class="loading-particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+    </div>
+
+    <!-- Chat Toggle Button -->
+    <div class="chat-toggle-btn" id="chatToggleBtn" onclick="toggleChat()">
+        <i class="fas fa-comments"></i>
+    </div>
+
+    <script>
+        // Loading Screen Management
+        window.addEventListener('load', () => {
+            const loadingScreen = document.getElementById('loadingScreen');
+            // Hide loading screen immediately when page is loaded
+            loadingScreen.classList.add('hide');
+            setTimeout(() => {
+                loadingScreen.style.display = 'none';
+            }, 500);
+        });
+
+        // Fallback: Hide loading screen after 3 seconds if load event doesn't fire
+        setTimeout(() => {
+            const loadingScreen = document.getElementById('loadingScreen');
+            if (loadingScreen && !loadingScreen.classList.contains('hide')) {
+                loadingScreen.classList.add('hide');
+                setTimeout(() => {
+                    loadingScreen.style.display = 'none';
+                }, 500);
+            }
+        }, 3000);
+
+        // Mobile Menu Toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        mobileToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            const icon = mobileToggle.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+
+        // Close menu when clicking on a link
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                const icon = mobileToggle.querySelector('i');
+                icon.classList.add('fa-bars');
+                icon.classList.remove('fa-times');
+            });
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Scroll to top button
+        const scrollTopBtn = document.getElementById('scrollTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // UPGRADED HERO SLIDESHOW WITH SMOOTH TRANSITIONS
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.hero-slide');
+        const totalSlides = slides.length;
+        const heroNav = document.getElementById('heroNav');
+        const heroPrev = document.getElementById('heroPrev');
+        const heroNext = document.getElementById('heroNext');
+
+        // Create navigation dots
+        for (let i = 0; i < totalSlides; i++) {
+            const dot = document.createElement('div');
+            dot.classList.add('hero-nav-dot');
+            if (i === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => goToSlide(i));
+            heroNav.appendChild(dot);
+        }
+
+        const navDots = document.querySelectorAll('.hero-nav-dot');
+
+        function updateSlide(index) {
+            // Remove active class from all slides and dots
+            slides.forEach(slide => slide.classList.remove('active'));
+            navDots.forEach(dot => dot.classList.remove('active'));
+
+            // Add active class to current slide and dot
+            slides[index].classList.add('active');
+            navDots[index].classList.add('active');
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateSlide(currentSlide);
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateSlide(currentSlide);
+            resetAutoplay();
+        }
+
+        // Auto play slideshow every 8 seconds
+        let autoplayInterval = setInterval(nextSlide, 8000);
+
+        function resetAutoplay() {
+            clearInterval(autoplayInterval);
+            autoplayInterval = setInterval(nextSlide, 8000);
+        }
+
+        // Control buttons
+        heroNext.addEventListener('click', () => {
+            nextSlide();
+            resetAutoplay();
+        });
+
+        heroPrev.addEventListener('click', () => {
+            prevSlide();
+            resetAutoplay();
+        });
+
+        // Pause on hover
+        const heroSection = document.querySelector('.hero');
+        heroSection.addEventListener('mouseenter', () => {
+            clearInterval(autoplayInterval);
+        });
+
+        heroSection.addEventListener('mouseleave', () => {
+            autoplayInterval = setInterval(nextSlide, 8000);
+        });
+
+        // Enhanced Intersection Observer for scroll-triggered animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    // Add staggered animation delay
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                        entry.target.style.animationDelay = '0s';
+                    }, index * 100);
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(element => {
+            observer.observe(element);
+        });
+
+        // Enhanced scroll animations for different directions
+        const slideUpObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('slide-up');
+                }
+            });
+        }, { threshold: 0.2 });
+
+        const slideLeftObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('slide-left');
+                }
+            });
+        }, { threshold: 0.2 });
+
+        const slideRightObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('slide-right');
+                }
+            });
+        }, { threshold: 0.2 });
+
+        // Apply slide animations to specific elements
+        document.querySelectorAll('.program-card').forEach(card => slideUpObserver.observe(card));
+        document.querySelectorAll('.gallery-item').forEach(item => slideUpObserver.observe(item));
+        document.querySelectorAll('.stat-card').forEach(card => slideLeftObserver.observe(card));
+        document.querySelectorAll('.vm-card').forEach(card => slideRightObserver.observe(card));
+
+        // Form submission - connect to WhatsApp
+        document.querySelector('form').addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const name = document.querySelector('input[placeholder="Masukkan nama Anda"]').value;
+            const email = document.querySelector('input[placeholder="Masukkan email Anda"]').value;
+            const subject = document.querySelector('input[placeholder="Subjek pesan"]').value;
+            const message = document.querySelector('textarea[placeholder="Tulis pesan Anda di sini..."]').value;
+
+            const whatsappMessage = `*Pesan dari Website Darul Qur'an Rahman*%0A%0A*Nama:* ${name}%0A*Email:* ${email}%0A*Subjek:* ${subject}%0A*Pesan:* ${message}`;
+
+            const whatsappURL = `https://wa.me/6281211117166?text=${whatsappMessage}`;
+
+            window.open(whatsappURL, '_blank');
+
+            // Reset form after sending
+            e.target.reset();
+        });
+
+        // Add stagger animation to program cards
+        const programCards = document.querySelectorAll('.program-card');
+        programCards.forEach((card, index) => {
+            card.style.animationDelay = `${index * 0.1}s`;
+        });
+
+        // Add stagger animation to gallery items
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        galleryItems.forEach((item, index) => {
+            item.style.animationDelay = `${index * 0.1}s`;
+        });
+
+        // Scroll Progress Indicator
+        const scrollProgress = document.getElementById('scrollProgress');
+        const scrollProgressBar = document.querySelector('.scroll-progress-bar');
+
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.body.offsetHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            scrollProgressBar.style.width = scrollPercent + '%';
+        });
+
+        // Floating Particles Animation
+        const particlesContainer = document.getElementById('floatingParticles');
+        const particles = document.querySelectorAll('.particle');
+
+        // Create more particles dynamically
+        for (let i = 0; i < 15; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.top = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 20 + 's';
+            particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            particlesContainer.appendChild(particle);
+        }
+
+        // Enhanced particle movement
+        particles.forEach((particle, index) => {
+            particle.style.animationDelay = (index * 2) + 's';
+            particle.style.animationDuration = (Math.random() * 10 + 15) + 's';
+        });
+    </script>
+    <script>
+    // Pastikan API Key ini sudah aktif di Google AI Studio
+    const API_KEY = ""; 
+
+    async function kirimPesan() {
+        const userInput = document.getElementById('user-input');
+        const chatWindow = document.getElementById('chat-window');
+        const text = userInput.value.trim();
+
+        if (!text) return;
+
+        // 1. Tampilkan pesan user
+        tambahChat(text, 'user');
+        userInput.value = '';
+
+        // 2. Tampilkan typing indicator
+        const typingIndicator = tampilkanTypingIndicator();
+
+        try {
+            // 3. Panggil API Gemini
+            const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${API_KEY}`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    contents: [{ parts: [{ text: `Kamu adalah asisten AI resmi Darul Qur'an Rahman (Asrama Yatim & Dhuafa), Jakarta Selatan. Jawablah pertanyaan berikut dengan sangat sopan, ramah, dan islami: ${text}` }] }]
+                })
+            });
+
+            const data = await response.json();
+
+            // 4. Sembunyikan typing indicator
+            sembunyikanTypingIndicator(typingIndicator);
+
+            // 5. Cek apakah ada error dari Google
+            if (data.error) {
+                console.error("Detail Error:", data.error);
+                tambahChat("Sistem sedang sibuk (Error: " + data.error.message + ")", 'bot');
+            } else if (data.candidates && data.candidates[0].content) {
+                const botReply = data.candidates[0].content.parts[0].text;
+                tambahChat(botReply, 'bot');
+            } else {
+                tambahChat("Maaf, saya tidak mengerti maksud Anda.", 'bot');
+            }
+
+        } catch (error) {
+            console.error("Koneksi Gagal:", error);
+            sembunyikanTypingIndicator(typingIndicator);
+            tambahChat("Gagal terhubung. Pastikan internet Anda aktif.", 'bot');
+        }
+    }
+
+    function tambahChat(text, sender) {
+        const chatWindow = document.getElementById('chat-window');
+        const div = document.createElement('div');
+        div.style.padding = "10px";
+        div.style.margin = "5px 0";
+        div.style.borderRadius = "10px";
+        div.style.fontSize = "14px";
+        div.style.maxWidth = "85%";
+        div.style.lineHeight = "1.4";
+
+        if (sender === 'user') {
+            div.style.alignSelf = "flex-end";
+            div.style.background = "#1a5d1a";
+            div.style.color = "white";
+            div.innerText = text;
+        } else {
+            div.style.alignSelf = "flex-start";
+            div.style.background = "#eeeeee";
+            div.style.color = "#333";
+            // Menggunakan innerText agar format teks dari AI (seperti baris baru) tetap terjaga
+            div.innerText = text;
+        }
+        
+        chatWindow.appendChild(div);
+        chatWindow.scrollTop = chatWindow.scrollHeight;
+    }
+
+    function toggleChat() {
+        const container = document.getElementById('gemini-chat-container');
+        const toggleBtn = document.getElementById('chatToggleBtn');
+        if (container.style.display === 'none' || container.style.display === '') {
+            container.style.display = 'flex';
+            toggleBtn.classList.add('hidden');
+        } else {
+            container.style.display = 'none';
+            toggleBtn.classList.remove('hidden');
+        }
+    }
+
+    function tampilkanTypingIndicator() {
+        const chatWindow = document.getElementById('chat-window');
+        const indicator = document.createElement('div');
+        indicator.className = 'typing-indicator';
+        indicator.innerHTML = '<span></span><span></span><span></span>';
+        chatWindow.appendChild(indicator);
+        chatWindow.scrollTop = chatWindow.scrollHeight;
+        return indicator;
+    }
+
+    function sembunyikanTypingIndicator(indicator) {
+        if (indicator && indicator.parentNode) {
+            indicator.parentNode.removeChild(indicator);
+        }
+    }
+</script>
+</body>
+
+</html>
+
+
